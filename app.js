@@ -88,10 +88,11 @@ app.get("/List", (req, res) => {
 });
 app.get("/:room", (req, res) => {
   let entredUrl = req.params.room;
+  console.log(entredUrl);
   roomsModel
     .findOne({ url: entredUrl })
     .then(function (room) {
-      room.userCount++;
+      room.userCount = room.userCount + 1;
       room.save();
     })
     .catch((err) => {
@@ -99,4 +100,4 @@ app.get("/:room", (req, res) => {
     });
   res.render("room", { roomId: req.params.room });
 });
-server.listen(3000);
+server.listen(3002);

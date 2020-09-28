@@ -58,7 +58,7 @@
     </div>
 
 </body>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
     $(document).ready(function () {
@@ -67,7 +67,7 @@
     function createRoom() {
         $.ajax({
             type: "post",
-            url: "http://localhost:3000/",
+            url: "https://webrtc.raintech.io/",
             data: "data",
             success: function (response) {
                 console.log('room created');
@@ -79,10 +79,10 @@
         let temp = document.getElementById("urlJoin").value;
         $.ajax({
             type: "post",
-            url: "http://localhost:3000/room",
+            url: "https://webrtc.raintech.io/room",
             data: { url: temp },
             success: function (response) {
-                if (response != false) { window.location.assign(`http://localhost:3000/${temp}`) }
+                if (response != false) { window.location.assign(`https://webrtc.raintech.io/${temp}`) }
                 else {
                     alert("roomID is not valid")
                 }
@@ -95,7 +95,7 @@
     function getRooms() {
         $.ajax({
             type: "get",
-            url: `http://localhost:3000/List`,
+            url: `https://webrtc.raintech.io/List`,
             success: function (response) {
                 for (let index = 0; index < response.length; index++) {
                     $("#responseRooms").append(` 
