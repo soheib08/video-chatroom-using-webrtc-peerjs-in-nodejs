@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script>
         const ROOM_ID = "<%= roomId %>"
     </script>
@@ -15,7 +16,7 @@
     <style>
         #video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, 300px);
+            grid-template-columns: repeat(auto-fill, 360px);
             grid-auto-rows: 300px;
         }
 
@@ -24,11 +25,57 @@
             height: 100%;
             object-fit: cover;
         }
+
+        p {
+            color: #0000009e;
+            font-size: 18px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <div id="video-grid"></div>
+    <div class="container">
+
+        <div id="video-grid">
+
+        </div>
+
+        <div class="row" id="details" style="visibility: hidden;">
+            <div class="col-4">
+                <p>
+                    presentor
+                </p>
+            </div>
+            <div class="col-4">
+                <p>
+                    guset
+                </p>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <p class="mt-5"
+                    style="font-size: 14px; color:honeydew; border-radius: 10px; background-color: green; padding: 10px 20px;">
+                    share link =
+                    <span id="sharedLink"></span></p>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function () {
+        let sharedLink = window.location.pathname;
+        document.getElementById("sharedLink").innerHTML = sharedLink;
+    });
+
+
+</script>
 
 </html>

@@ -1,5 +1,6 @@
 //the peerjs server has started so everytime a new user is connected it
 //will assign a new userid to it automatically.
+
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
@@ -7,6 +8,7 @@ const myPeer = new Peer(undefined, {
   port: "3001",
 });
 const myVideo = document.createElement("video");
+myVideo.id = "presnetor";
 myVideo.muted = true;
 const peers = {};
 navigator.mediaDevices
@@ -21,6 +23,7 @@ navigator.mediaDevices
     myPeer.on("call", (call) => {
       call.answer(stream);
       const video = document.createElement("video");
+      video.id = "guest";
       call.on("stream", (userVideoStream) => {
         addVideoStream(video, userVideoStream);
       });
@@ -44,6 +47,7 @@ myPeer.on("open", (id) => {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
+  video.id = "guest";
   call.on("stream", (userVideoStream) => {
     addVideoStream(video, userVideoStream);
   });
@@ -58,6 +62,7 @@ function addVideoStream(video, stream) {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
     video.play();
+    document.getElementById("details").style.visibility = "visible";
   });
   videoGrid.append(video);
 }
